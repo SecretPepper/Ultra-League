@@ -309,7 +309,7 @@
                 { league: "Diamond League", name: "Ultra Team", logo: "teams/Ultra Team.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Diamond League", name: "TBot Warriors", logo: "teams/TBot Warriors.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Diamond League", name: "The Boiz", logo: "teams/The Boiz.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
-                { league: "Diamond League", name: "Team 8", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
+                { league: "Diamond League", name: "IV", logo: "teams/IV.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Diamond League", name: "Team 9", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Diamond League", name: "Team 10", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
 
@@ -403,7 +403,7 @@
                 const rank = index + 1;
                 
                 let rowClass = "row-blue";
-                if (rank <= 2) rowClass = "row-green";
+                if (rank <= 4) rowClass = "row-green";
                 if (rank > leagueTeams.length - 2 && leagueTeams.length > 3) rowClass = "row-red";
 
                 const plusMinus = `${team.rWon}-${team.rLost}`;
