@@ -280,6 +280,11 @@
                         </tbody>
                 </table>
             </div>
+            <div class="colors" id="legend-container">
+                <p class="row-green">&#9654 Ultra Trophy</p>
+                <p class="row-blue">&#9654 Diamond Trophy</p>
+                <p class="row-red">&#9654 Relegation</p>
+            </div>
         </div>
 
         <div id="fixtures" class="tab-content hidden">
@@ -295,7 +300,7 @@
         // 🛠️ EASY EDIT DATA SECTION 🛠️                                            //
         // Add, remove, or rename your leagues and teams right here!             //
         // ===================================================================== //
-        
+
         const LEAGUES = ["Diamond League", "Gold League", "Iron League", "Wood League"];
 
         const LEAGUE_DATA = {
@@ -310,11 +315,11 @@
                 { league: "Diamond League", name: "TBot Warriors", logo: "teams/TBot Warriors.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Diamond League", name: "The Boiz", logo: "teams/The Boiz.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Diamond League", name: "IV", logo: "teams/IV.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
-                { league: "Diamond League", name: "Team 9", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
-                { league: "Diamond League", name: "Team 10", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
+                { league: "Diamond League", name: "Wemmbu_Aura+++", logo: "teams/Wemmbu_Aura.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
+                { league: "Diamond League", name: "Sanctuary", logo: "teams/Sanctuary.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
 
                 // ------------------ GOLD LEAGUE (8 Teams) ------------------
-                { league: "Gold League", name: "Gold Team 1", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
+                { league: "Gold League", name: "HT1 Gooners", logo: "teams/HT1 Gooners.png", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Gold League", name: "Gold Team 2", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Gold League", name: "Gold Team 3", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
                 { league: "Gold League", name: "Gold Team 4", logo: "", played: 0, wins: 0, losses: 0, rWon: 0, rLost: 0, points: 0, form: ["?", "?", "?", "?", "?"] },
@@ -377,6 +382,7 @@
                 container.appendChild(btn);
             });
             document.getElementById('current-league-title').innerText = currentLeague;
+            renderLegend();
         }
 
         function showTab(tabId) {
@@ -403,8 +409,13 @@
                 const rank = index + 1;
                 
                 let rowClass = "row-blue";
-                if (rank <= 4) rowClass = "row-green";
-                if (rank > leagueTeams.length - 2 && leagueTeams.length > 3) rowClass = "row-red";
+                if (currentLeague === "Diamond League") {
+                    if (rank <= 4) rowClass = "row-green";
+                    if (rank > leagueTeams.length - 2 && leagueTeams.length > 3) rowClass = "row-red";
+                } else {
+                    if (rank <= 2) rowClass = "row-green";
+                    if (rank > leagueTeams.length - 2) rowClass = "row-red";
+                }
 
                 const plusMinus = `${team.rWon}-${team.rLost}`;
                 const rd = team.rWon - team.rLost;
@@ -443,6 +454,7 @@
                     </tr>
                 `;
             });
+            renderLegend();
         }
 
         function renderFixtures() {
@@ -463,6 +475,21 @@
                     </div>
                 `;
             });
+        }
+
+        function renderLegend() {
+            const container = document.getElementById('legend-container');
+            let greenText = currentLeague === "Diamond League" ? "Ultra Trophy" : "Promotion";
+            let blueText =
+            currentLeague === "Diamond League" ? "Diamond Trophy" :
+            currentLeague === "Gold League" ? "Gold Trophy" :
+            currentLeague === "Iron League" ? "Iron Trophy" : "Wood Trophy";
+            let redText = "Relegation";
+            container.innerHTML = `
+                <p class="row-green">&#9654 ${greenText}</p>
+                <p class="row-blue">&#9654 ${blueText}</p>
+                <p class="row-red">&#9654 ${redText}</p>
+            `;
         }
 
         initLeagues();
