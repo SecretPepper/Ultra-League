@@ -17,6 +17,7 @@
             /* Table Left-Border Colors */
             --rank-top: #00ff66;
             --rank-mid: #2b5cff;
+            --rank-midlow: #ffbc2b;
             --rank-bot: #ff3333;
         }
 
@@ -167,6 +168,7 @@
         /* Left Border Colors */
         .row-green { border-left: 4px solid var(--rank-top); }
         .row-blue  { border-left: 4px solid var(--rank-mid); }
+        .row-yellow { border-left: 4px solid var(--rank-midlow); }
         .row-red   { border-left: 4px solid var(--rank-bot); }
 
         /* Team Name & Logo Flexbox */
@@ -283,6 +285,7 @@
             <div class="colors" id="legend-container">
                 <p class="row-green">&#9654 Ultra Trophy</p>
                 <p class="row-blue">&#9654 Diamond Trophy</p>
+                <p class="row-yellow">&#9654 Trophy Qualification</p>
                 <p class="row-red">&#9654 Relegation</p>
             </div>
         </div>
@@ -414,6 +417,7 @@
                     if (rank > leagueTeams.length - 2 && leagueTeams.length > 3) rowClass = "row-red";
                 } else {
                     if (rank <= 2) rowClass = "row-green";
+                    if (rank >= 5 && rank <= 8) rowClass = "row-yellow";
                     if (rank > leagueTeams.length - 2) rowClass = "row-red";
                 }
 
@@ -485,9 +489,11 @@
             currentLeague === "Gold League" ? "Gold Trophy" :
             currentLeague === "Iron League" ? "Iron Trophy" : "Wood Trophy";
             let redText = "Relegation";
+            let yellowText = currentLeague === "Diamond League" ? "Trophy Qualification" : "Trophy Qualification";
             container.innerHTML = `
                 <p class="row-green">&#9654 ${greenText}</p>
                 <p class="row-blue">&#9654 ${blueText}</p>
+                <p class="row-yellow">&#9654 ${yellowText}</p>
                 <p class="row-red">&#9654 ${redText}</p>
             `;
         }
